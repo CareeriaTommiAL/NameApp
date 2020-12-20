@@ -25,7 +25,8 @@ namespace NameApp.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Name>>> GetNames()
         {
-            return await _context.Names.ToListAsync();
+            // return await _context.Names.ToListAsync();
+            return await _context.Names.OrderByDescending(a => a.Amount).ToListAsync();
         }
 
         // GET: api/Names/5

@@ -1,0 +1,41 @@
+﻿@page "/namelist"
+@using NameApp.Shared
+@inject HttpClient Http
+@inject NavigationManager navManager
+
+<h2>Name List</h2>
+
+@if (names == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in names)
+            {
+            <tr>
+                <td>@item.Nimi</td>
+                <td>@item.Amount</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private Name[] names;
+
+    protected override async Task OnInitializedAsync()
+    {
+        names = await Http.GetFromJsonAsync<Name[]>("api/Names");
+    }
+}

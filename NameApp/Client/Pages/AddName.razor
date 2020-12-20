@@ -1,0 +1,45 @@
+﻿@page "/addname"
+@using NameApp.Shared
+@inject HttpClient Http
+@inject NavigationManager navManager
+
+
+<h3>AddName</h3>
+<hr />
+<form>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="Nimi" class="control-label">Name</label>
+                <input form="Nimi" class="form-control" @bind="nimi.Nimi" />
+            </div>
+            <div class="form-group">
+                <label for="Nimi" class="control-label">Amount</label>
+                <input form="Nimi" class="form-control" @bind="nimi.Amount" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="button" class="btn btn-primary" @onclick="@CreateName" value="Save" />
+                <input type="button" class="btn btn-warning" @onclick="@Cancel" value="Cancel" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@code {
+    Name nimi = new();
+
+    protected async Task CreateName()
+    {
+        await Http.PostAsJsonAsync("api/Names", nimi);
+        navManager.NavigateTo("namelist");
+    }
+
+    void Cancel()
+    {
+        navManager.NavigateTo("namelist");
+    }
+}
