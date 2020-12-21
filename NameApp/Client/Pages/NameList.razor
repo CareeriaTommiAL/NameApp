@@ -4,6 +4,8 @@
 @inject NavigationManager navManager
 
 <h2>Name List</h2>
+<br />
+<h3>Total Names: @namecount</h3>
 
 @if (names == null)
 {
@@ -32,10 +34,12 @@ else
 
 
 @code {
+    public int namecount { get; set; }
     private Name[] names;
 
     protected override async Task OnInitializedAsync()
     {
         names = await Http.GetFromJsonAsync<Name[]>("api/Names");
+        namecount = await Http.GetFromJsonAsync<int>("api/Names/countnames");
     }
 }

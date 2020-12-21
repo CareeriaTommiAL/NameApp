@@ -43,6 +43,13 @@ namespace NameApp.Server.Controllers
             return name;
         }
 
+        //GET: api/Names/countnames
+        [HttpGet("countnames")]
+        public async Task<int?> CountNames()
+        {
+            return await _context.Names.SumAsync(a => a.Amount);
+        }
+
         // PUT: api/Names/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
