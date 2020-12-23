@@ -24,12 +24,11 @@ namespace NameApp.Server.Controllers
         // GET: api/Names
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Name>>> GetNames()
-        {
-            // return await _context.Names.ToListAsync();
+        {            
             return await _context.Names.OrderByDescending(a => a.Amount).ToListAsync();
         }
 
-        // GET: api/Names/5
+        //GET: api/Names/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Name>> GetName(int id)
         {
@@ -43,6 +42,21 @@ namespace NameApp.Server.Controllers
             return name;
         }
 
+        // GET: api/Names/requestedName
+        //[HttpGet("{requestedName}")]
+        //public async Task<ActionResult<Name[]>> GetName(string requestedName)
+        //{
+        //    var name = _context.Names.Where(n => n.Nimi.ToLower()
+        //               .Contains(requestedName.Trim().ToLower())).ToArrayAsync();
+
+        //    if (name == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(name);
+        //}
+
         //GET: api/Names/countnames
         [HttpGet("countnames")]
         public async Task<int?> CountNames()
@@ -51,7 +65,6 @@ namespace NameApp.Server.Controllers
         }
 
         // PUT: api/Names/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutName(int id, Name name)
         {
@@ -82,7 +95,7 @@ namespace NameApp.Server.Controllers
         }
 
         // POST: api/Names
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPost]
         public async Task<ActionResult<Name>> PostName(Name name)
         {

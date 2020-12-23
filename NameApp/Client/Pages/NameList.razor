@@ -7,33 +7,28 @@
 <br />
 <h3>Total Names: @namecount</h3>
 
+<br />
+
 @if (names == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in names)
-            {
-            <tr>
-                <td>@item.Nimi</td>
-                <td>@item.Amount</td>
-            </tr>
-            }
-        </tbody>
-    </table>
+    <TableTemplate Items="names">
+        <TableHeader>
+            <th>Name</th>
+            <th>Amount</th>
+        </TableHeader>
+        <RowTemplate Context="item">
+            <td>@item.Nimi</td>
+            <td>@item.Amount</td>
+        </RowTemplate>
+    </TableTemplate>   
 }
 
-
 @code {
+    
     public int namecount { get; set; }
     private Name[] names;
 
@@ -43,3 +38,5 @@ else
         namecount = await Http.GetFromJsonAsync<int>("api/Names/countnames");
     }
 }
+
+
