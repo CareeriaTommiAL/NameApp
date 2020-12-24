@@ -5,7 +5,7 @@
 
 <h2>Name List</h2>
 <br />
-<h3>Total Names: @namecount</h3>
+<h3>Total Names: @nameCount</h3>
 
 <br />
 
@@ -13,30 +13,54 @@
 {
     <p><em>Loading...</em></p>
 }
-else
+else if (filteredNameList != null)
 {
-    <TableTemplate Items="names">
+    <TableTemplate Items="filteredNameList">
         <TableHeader>
-            <th>Name</th>
+            <Search ColumnTitle="Name" OnSearchTextChanged="OnNameSearchTextChanged"></Search>
             <th>Amount</th>
         </TableHeader>
-        <RowTemplate Context="item">
-            <td>@item.Nimi</td>
-            <td>@item.Amount</td>
+        <RowTemplate Context="names">
+            <td>@names.Nimi</td>
+            <td>@names.Amount</td>
         </RowTemplate>
-    </TableTemplate>   
+    </TableTemplate>
+}
+else
+{
+    <TableTemplate Items="nameList">
+        <TableHeader>
+            <Search ColumnTitle="Name" OnSearchTextChanged="OnNameSearchTextChanged"></Search>
+            <th>Amount</th>
+        </TableHeader>
+        <RowTemplate Context="names">
+            <td>@names.Nimi</td>
+            <td>@names.Amount</td>
+        </RowTemplate>
+    </TableTemplate>
 }
 
 @code {
-    
-    public int namecount { get; set; }
+
+    private int nameCount { get; set; }
     private Name[] names;
+    private List<Name> nameList { get; set; }
+    private List<Name> filteredNameList { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         names = await Http.GetFromJsonAsync<Name[]>("api/Names");
-        namecount = await Http.GetFromJsonAsync<int>("api/Names/countnames");
+        nameList = await Http.GetFromJsonAsync<List<Name>>("api/Names");
+        nameCount = await Http.GetFromJsonAsync<int>("api/Names/countnames");
+    }
+
+    private void OnNameSearchTextChanged(ChangeEventArgs changeEventArgs)
+    {
+        string searchText = changeEventArgs.Value.ToString();
+        filteredNameList = nameList.Where(n => n.Nimi.ToLower().Contains(searchText.Trim().ToLower())).ToList();
     }
 }
 
+
+Where(n => n.Nimi.ToLower().Contains(searchText.Trim().ToLower())).ToList;
 
