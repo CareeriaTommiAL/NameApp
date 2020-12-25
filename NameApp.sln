@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameApp.Client", "NameApp\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NameApp.Shared", "NameApp\Shared\NameApp.Shared.csproj", "{257B75F2-321F-4F21-BCF6-057F069DCB2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameApp.UnitTests", "NameApp.UnitTests\NameApp.UnitTests.csproj", "{B707DA2E-3233-420C-926B-D6086239509C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{257B75F2-321F-4F21-BCF6-057F069DCB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{257B75F2-321F-4F21-BCF6-057F069DCB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{257B75F2-321F-4F21-BCF6-057F069DCB2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B707DA2E-3233-420C-926B-D6086239509C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B707DA2E-3233-420C-926B-D6086239509C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B707DA2E-3233-420C-926B-D6086239509C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B707DA2E-3233-420C-926B-D6086239509C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,6 @@
 ﻿@page "/namelist"
 @using NameApp.Shared
+
 @inject HttpClient Http
 @inject NavigationManager navManager
 
@@ -62,5 +63,5 @@ else
 }
 
 
-Where(n => n.Nimi.ToLower().Contains(searchText.Trim().ToLower())).ToList;
+Where(n => n.Nimi.ToLower().Contains(searchText.Trim().ToLower())).ToList; 
 
