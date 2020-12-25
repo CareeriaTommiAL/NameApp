@@ -6,28 +6,32 @@
 
 <h3>AddName</h3>
 <hr />
-<form>
+<EditForm Model="nimi" OnValidSubmit="@CreateName">
+    <DataAnnotationsValidator/>
+    <ValidationSummary />
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
                 <label for="Nimi" class="control-label">Name</label>
                 <input form="Nimi" class="form-control" @bind="nimi.Nimi" />
+                <ValidationMessage For="@(() => nimi.Nimi)" />
             </div>
             <div class="form-group">
                 <label for="Nimi" class="control-label">Amount</label>
                 <input form="Nimi" class="form-control" @bind="nimi.Amount" />
+                <ValidationMessage For="@(() => nimi.Amount)" />
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <input type="button" class="btn btn-primary" @onclick="@CreateName" value="Save" />
+                <input type="submit" class="btn btn-primary" value="Save" />
                 <input type="button" class="btn btn-warning" @onclick="@Cancel" value="Cancel" />
             </div>
         </div>
     </div>
-</form>
+</EditForm>
 
 @code {
     Name nimi = new();
