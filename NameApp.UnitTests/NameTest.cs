@@ -14,11 +14,18 @@ namespace NameApp.UnitTests
         [Fact]
         public void TestNameListRendering()
         {
+            // Arrange
+            var nameServiceMock = Mock.Create<INameService>();
+            Mock.Arrange(() => nameServiceMock.GetNamesAsync())
+                .Returns(new TaskCompletionSource<Name[]>().Task);
+            Services.AddSingleton<INameService>(nameServiceMock);
+
             // Act
             var cut = RenderComponent<NameList>();
 
             // Assert
-            cut.Find("h2").MarkupMatches("<h2>Name List</h2>");
+            var htmlContains = "<p><em> Loading...</em></p>";
+            cut.Markup.Contains(htmlContains);
         }
     }
 }
