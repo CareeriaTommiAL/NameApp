@@ -1,7 +1,5 @@
 ﻿@page "/namelist"
 @using NameApp.Shared
-
-@inject HttpClient Http
 @inject NavigationManager navManager
 
 <h2>Name List</h2>
@@ -41,27 +39,5 @@ else
     </TableTemplate>
 }
 
-@code {
 
-    private int nameCount { get; set; }
-    private Name[] names;
-    private List<Name> nameList { get; set; }
-    private List<Name> filteredNameList { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        names = await Http.GetFromJsonAsync<Name[]>("api/Names");
-        nameList = await Http.GetFromJsonAsync<List<Name>>("api/Names");
-        nameCount = await Http.GetFromJsonAsync<int>("api/Names/countnames");
-    }
-
-    private void OnNameSearchTextChanged(ChangeEventArgs changeEventArgs)
-    {
-        string searchText = changeEventArgs.Value.ToString();
-        filteredNameList = nameList.Where(n => n.Nimi.ToLower().Contains(searchText.Trim().ToLower())).ToList();
-    }
-}
-
-
-Where(n => n.Nimi.ToLower().Contains(searchText.Trim().ToLower())).ToList; 
 
