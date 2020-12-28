@@ -98,13 +98,12 @@ namespace NameApp.Server.Controllers
         
         [HttpPost]
         public async Task<ActionResult<Name>> PostName(Name name)
-        {
-            
+        {            
             var allreadyInDb = _context.Names.Where(n => n.Nimi.ToLower() == name.Nimi.Trim().ToLower());
 
             if (allreadyInDb.Any())
             {
-                return BadRequest(error: "Name allready exists in Database.");
+                return BadRequest();
             }
             else
             {
@@ -112,8 +111,7 @@ namespace NameApp.Server.Controllers
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction("GetName", new { id = name.Id }, name);
-            }
-           
+            }          
         }
 
         // DELETE: api/Names/5
