@@ -42,20 +42,6 @@ namespace NameApp.Server.Controllers
             return name;
         }
 
-        // GET: api/Names/requestedName
-        //[HttpGet("{requestedName}")]
-        //public async Task<ActionResult<Name[]>> GetName(string requestedName)
-        //{
-        //    var name = _context.Names.Where(n => n.Nimi.ToLower()
-        //               .Contains(requestedName.Trim().ToLower())).ToArrayAsync();
-
-        //    if (name == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(name);
-        //}
 
         //GET: api/Names/countnames
         [HttpGet("countnames")]

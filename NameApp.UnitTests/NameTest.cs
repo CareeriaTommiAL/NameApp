@@ -15,8 +15,8 @@ namespace NameApp.UnitTests
         public void TestNameListRendering()
         {
             // Arrange
-            var nameServiceMock = Mock.Create<INameService>();
-            Mock.Arrange(() => nameServiceMock.GetNamesAsync())
+            var nameServiceMock = Mock.Create<INameService>();        //INameService tarjoaa HtmlClientin
+            Mock.Arrange(() => nameServiceMock.GetNamesAsync())       //jota sivun renderöinti edellyttää
                 .Returns(new TaskCompletionSource<Name[]>().Task);
             Services.AddSingleton<INameService>(nameServiceMock);
 
@@ -26,6 +26,20 @@ namespace NameApp.UnitTests
             // Assert
             var htmlContains = "<p><em> Loading...</em></p>";
             cut.Markup.Contains(htmlContains);
+        }
+
+        [Fact]
+        public void CounterTest()
+        {
+            var cut = RenderComponent<Counter>();
+            cut.Find("p").MarkupMatches("<p>Current count: 0</p>");
+
+            // Act
+            var element = cut.Find("button");
+            element.Click();
+
+            // Assert
+            cut.Find("p").MarkupMatches("<p>Current count: 1</p>");
         }
     }
 }
