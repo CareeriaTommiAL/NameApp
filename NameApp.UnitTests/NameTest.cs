@@ -40,6 +40,6 @@ namespace NameApp.UnitTests
 
             // Assert
             cut.Find("p").MarkupMatches("<p>Current count: 1</p>");
-        }
+        }       
     }
 }
